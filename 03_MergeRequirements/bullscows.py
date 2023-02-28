@@ -27,7 +27,6 @@ def ask(prompt: str, valid: list[str] = None) -> str:
     if valid is not None:
         while not guess in valid:
             print("Допустимы слова только из словаря!")
-            print(prompt)
             guess = input(prompt)
     return guess
 
