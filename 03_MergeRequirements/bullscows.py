@@ -24,15 +24,15 @@ def gameplay(ask: callable, inform: callable, words: list[str]) -> int:
 
 def ask(prompt: str, valid: list[str] = None) -> str:
     print(cowsay(message=prompt,
-                cow=get_random_cow()))
+                cowfile=read_dot_cow(open("custom_cow.cow"))))
     guess = input()
 
     if valid is not None:
         while not guess in valid:
             print(cowsay(message="Допустимы слова только из словаря!",
-                        cow=get_random_cow()))
+                        cowfile=read_dot_cow(open("custom_cow.cow"))))
             print(cowsay(message=prompt,
-                        cow=get_random_cow()))
+                        cowfile=read_dot_cow(open("custom_cow.cow"))))
             guess = input()
     return guess
 
