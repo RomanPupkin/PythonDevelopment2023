@@ -2,6 +2,7 @@ import argparse
 import urllib.request
 import random
 import argparse
+from cowsay import cowsay, get_random_cow, read_dot_cow
 
 def bullscows(guess: str, secret: str) -> (int, int):
     return sum(i == j for i, j in zip(guess, secret)), len(set(guess).intersection(secret))
@@ -22,18 +23,24 @@ def gameplay(ask: callable, inform: callable, words: list[str]) -> int:
 
 
 def ask(prompt: str, valid: list[str] = None) -> str:
-    guess = input(prompt)
+    print(cowsay(message=prompt,
+                cow=get_random_cow()))
+    guess = input()
 
     if valid is not None:
         while not guess in valid:
-            print("Допустимы слова только из словаря!")
-            print(prompt)
-            guess = input(prompt)
+            print(cowsay(message="Допустимы слова только из словаря!",
+                        cow=get_random_cow()))
+            print(cowsay(message=prompt,
+                        cow=get_random_cow()))
+            guess = input()
     return guess
 
 
 def inform(format_string: str, bulls: int, cows: int) -> None:
-    print(format_string.format(bulls, cows))
+    print(cowsay(message=format_string.format(bulls, cows),
+                cow=get_random_cow()))
+    #print(format_string.format(bulls, cows))
 
 
 if __name__ == "__main__":
